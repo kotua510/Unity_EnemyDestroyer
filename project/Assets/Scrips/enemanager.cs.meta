@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4fb2ba8e1648fe6408c3d81452457edd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ene1: {instanceID: 0}
+  - ene2: {instanceID: 0}
+  - enePleace1: {instanceID: 0}
+  - enePleace2: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
