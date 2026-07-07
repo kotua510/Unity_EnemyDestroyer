@@ -24,6 +24,32 @@ C#,Unity
 <br>
 ・アピールポイント④:カメラ向きの制限<br>
 カメラを上下に動かす時、制限がないとカメラの挙動がおかしくなってしまうので Clamp メソッドを用いて、カメラの上下の向きを制限しました。<br>
+<br>
+
+アピールポイント⑤:敵の追尾とランダム巡回<br>
+enecontoller.cs の Update() で実装。プレイヤーが Target として検出されると transform.LookAt(Target.transform) により向きを合わせ、追尾行動を実装しました。プレイヤー未検出時は Timer を Time.deltaTime で加算し、ChangeTime 以上で Random.Range(0, 360) を使ってランダムな y 回転角を設定して巡回挙動に切り替えるように実装しました。<br>
+<br>
+
+アピールポイント⑥:敵ターゲット選択とロックオンカメラ<br>
+PlayerContoller.cs の TargetLook() では、EnemyListManager.EnemyList に登録された敵を RightShift キーで順番に切り替え、Target = EnemyListManager.EnemyList[TargetCount] としてターゲットを設定しました。<br>敵リストの最後まで到達すると先頭へ戻るようにしており、RightControl キーでターゲットを解除できます。また、ターゲットが設定されている間は Camera.transform.LookAt(pos) を用いてカメラをターゲット方向へ向け、y座標を固定することで上下方向には動かさず、水平方向のみロックオンする視点制御を行っています。<br>
+<br>
+
+アピールポイント⑦:攻撃判定をアニメーションと連動<br>
+PlayerContoller.cs の WeaponON() / WeaponOFF() で WeaponCollider.enabled を制御しました。攻撃モーション時にのみ武器コライダーを有効化し、攻撃終了時に無効化しています。これにより、攻撃アニメーション外の不要なヒット判定を抑止して挙動を安定化させるように実装しました。<br>
+<br>
+
+アピールポイント⑧: 敵生成の周期制御<br>
+enemanager.cs の Update() で実装しました。TimeCount += Time.deltaTime で時間を蓄積し、TimeCount > 5 で Instantiate(ene1, enePleace1.position, Quaternion.identity) / Instantiate(ene2, enePleace2.position, Quaternion.identity) を実行、MaxCount <= Count の判定により総生成数を制限し、敵の出現ペースと難易度を調整しました。<br>
+<br>
+
+アピールポイント⑨:ダメージ判定のクールダウン<br>
+statusmanager.cs の OnTriggerEnter(Collider other) で被弾判定後に mycollider.enabled = false とし、Invoke("ColliderReset", ResetTime) で一定時間後に再有効化しています。これにより同一敵との連続ヒットを防ぎ、ダメージ処理の安定性とフェアなプレイ感を担保できるようにしました。<br>
+<br>
+
+アピールポイント⑩:カメラ視点に連動したキャラ移動<br>
+PlayerContoller.cs の Move() / MoveSet() で Camera.transform.eulerAngles.y を参照し、WASD 入力に応じた rot.y を加算してキャラクターの向きを調整しました。これにより視点方向に合わせた移動が可能になり、直感的で操作しやすいプレイ感を実現しています。<br>
+<br>
+
 ## 5.プレイしていただく時の注意点<br>
 ゲーム内での実装が間に合いませんでしたので操作方法と簡単な説明を以下に記します。<br>
 ・移動: WASDキー<br>
