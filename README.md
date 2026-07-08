@@ -63,3 +63,6 @@ PlayerContoller.cs の Move() / MoveSet() で Camera.transform.eulerAngles.y を
 
 ## 6.プロジェクトについての注意点
 1.プロジェクトをUnityで開く場合、「Title」がタイトル画面を、「Main」が実際にゲームを作成したsceneですのでプロジェクトを開いた時、sceneがこれらでなかったらAssetsフォルダの中にある「Main」もしくは「Title」に移動してください。
+
+## 7.今後の展望
+バグや不具合を見つけ次第修正していく予定です。<br>
